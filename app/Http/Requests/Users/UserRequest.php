@@ -23,8 +23,26 @@ class UserRequest extends FormRequest
      */
     public function rules()
     {
-        return [
-            //
-        ];
+        /**
+         * Get currently requested method
+         */
+        $method = $this->method();
+
+        switch ($method) {
+            case 'POST':
+                return [
+                    'name' => 'required|string|max:255',
+                    'email' => 'required|string|email|max:255|unique:users',
+                    'password' => 'required|string|min:6|confirmed',
+                    'role_id' => 'required'
+                ];
+
+            case 'PATCH':
+                return [
+                    'name' => 'required|string|max:255',
+                    'email' => 'required|string|email|max:255|unique:users,email,'.$this->id,
+                    'role_id' => 'required'
+                ];
+        }
     }
 }

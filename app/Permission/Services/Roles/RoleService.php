@@ -63,9 +63,9 @@ class RoleService
      *
      * @return mixed
      */
-    public function getRoles()
+    public function getAllRoles()
     {
-        return $this->role->getRoles();
+        return $this->role->getAllRoles();
     }
 
     /**

@@ -31,7 +31,7 @@ class RoleRepository extends Repository
      *
      * @return mixed
      */
-    public function getRoles()
+    public function getAllRoles()
     {
         return $this->model->where('id','!=',1)->get();
     }

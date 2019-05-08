@@ -33,7 +33,7 @@ class RoleController extends Controller
      */
     public function index()
     {
-        $roles = $this->role->getRoles();
+        $roles = $this->role->getAllRoles();
         return view('backend.roles.index',compact('roles'));
     }
 

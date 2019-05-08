@@ -25,4 +25,25 @@ class UserRepository extends Repository
     {
         return 'App\User';
     }
+
+    /**
+     * Get Users except given roles
+     *
+     * @param $roles
+     * @return mixed
+     */
+    public function users($roles)
+    {
+        return $this->model->whereNotIn('id', $roles)->get();
+    }
+
+    /**
+     * Get All Users
+     *
+     * @return \Illuminate\Database\Eloquent\Collection
+     */
+    public function getAllUsers()
+    {
+        return $this->all();
+    }
 }
