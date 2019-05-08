@@ -1,7 +1,7 @@
 <?php
 
 $router->group(['namespace'=>'Roles'], function($router) {
-    $router->get('/roles', 'RoleController@index')->middleware('hasPermission:roles,list')->name('roles.index');
+    $router->get('/roles', 'RoleController@index')->middleware('hasPermission:roles,index')->name('roles.index');
 
     $router->get('/role/create', 'RoleController@create')->middleware('hasPermission:roles,create')->name('roles.create');
 

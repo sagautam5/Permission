@@ -12,7 +12,7 @@ class PermissionsTableSeeder extends Seeder
     public function run()
     {
         $resources = ['users','roles','permissions'];
-        $actions = ['create','store','edit','update','list','delete'];
+        $actions = ['create','store','edit','update','index','delete'];
 
         foreach ($resources as $resource)
         {

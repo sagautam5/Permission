@@ -1,7 +1,7 @@
 <?php
 $router->group(['namespace'=>'Permissions'],function($router) {
 
-    $router->get('/permissions', 'PermissionController@index')->middleware('hasPermission:permissions,list')->name('permissions.index');
+    $router->get('/permissions', 'PermissionController@index')->middleware('hasPermission:permissions,index')->name('permissions.index');
 
     $router->get('/permission/create', 'PermissionController@create')->middleware('hasPermission:permissions,create')->name('permissions.create');
 

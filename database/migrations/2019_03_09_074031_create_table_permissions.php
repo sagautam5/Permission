@@ -17,7 +17,7 @@ class CreateTablePermissions extends Migration
             $table->bigIncrements('id');
             $table->biginteger('role_id')->unsigned();
             $table->string('resource');
-            $table->string('action');
+            $table->enum('action',['index', 'create', 'store', 'edit', 'update', 'delete']);
             $table->timestamps();
 
             $table->foreign('role_id')->references('id')->on('roles')->onDelete('cascade');

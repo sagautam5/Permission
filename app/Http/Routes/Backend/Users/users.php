@@ -1,7 +1,7 @@
 <?php
 
 $router->group(['namespace'=>'Users'],function($router){
-    $router->get('/users', 'UserController@index')->middleware('hasPermission:users,list')->name('users.index');
+    $router->get('/users', 'UserController@index')->middleware('hasPermission:users,index')->name('users.index');
 
     $router->get('/user/create', 'UserController@create')->middleware('hasPermission:users,create')->name('users.create');
 

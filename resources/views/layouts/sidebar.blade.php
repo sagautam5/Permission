@@ -24,7 +24,7 @@
                             @if(hasActionResourcePermission($permissions,'users','create'))
                                 <li><a href="{{route('users.create')}}">Add New</a></li>
                             @endif
-                            @if(hasActionResourcePermission($permissions,'users','list'))
+                            @if(hasActionResourcePermission($permissions,'users','index'))
                                 <li><a href="{{route('users.index')}}">Users List</a></li>
                             @endif
                         </ul>
@@ -38,10 +38,16 @@
                                 @if(hasActionResourcePermission($permissions,'roles','create'))
                                     <li><a href="{{route('roles.create')}}">Add New</a></li>
                                 @endif
-                                @if(hasActionResourcePermission($permissions,'roles','list'))
+                                @if(hasActionResourcePermission($permissions,'roles','index'))
                                     <li><a href="{{route('roles.index')}}">Roles List</a></li>
                                 @endif
                             </ul>
+                        </li>
+                    @endif
+
+                    @if(hasResourcePermission($permissions,'permissions') && hasActionResourcePermission($permissions, 'permissions','index'))
+                        <li>
+                            <a href="{{route('permissions.index')}}" class="waves-effect"><i class="dripicons-gear text-muted"></i> <span> Permissions </span> </a>
                         </li>
                     @endif
 
