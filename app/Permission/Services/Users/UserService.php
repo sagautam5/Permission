@@ -65,6 +65,16 @@ class UserService
     }
 
     /**
+     * Get allowed roles ids
+     *
+     * @return mixed
+     */
+    public function getAllowedRoleIds()
+    {
+        return $this->role->getAllowedRoleIds();
+    }
+
+    /**
      * Get All Users
      *
      * @return mixed
@@ -135,7 +145,7 @@ class UserService
 
             $this->db->rollback();
         }
-        
+
         return $result;
     }
 

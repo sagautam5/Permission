@@ -29,6 +29,7 @@
                                 <tr>
                                     <th> S.N.</th>
                                     <th> Role</th>
+                                    <th> Level</th>
                                     <th> Action</th>
                                 </tr>
                                 </thead>
@@ -38,6 +39,7 @@
                                     <tr>
                                         <th>{{$loop->iteration}}</th>
                                         <th>{{$role->display_name}}</th>
+                                        <th>{{getDigitName($role->level)}}</th>
                                         <th>
                                             <a href="{{route('roles.edit',$role->id)}}" class="m-r-15 text-muted" title="Edit"><i class="mdi mdi-pencil font-18"></i></a>
                                             <a href="{{route('roles.delete',$role->id)}}" class="m-l-15 text-muted" title="Delete" onclick="return confirm('Are you sure you would like to delete this role ?');"><i class="mdi mdi-close font-18"></i></a>

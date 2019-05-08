@@ -44,7 +44,8 @@ class RoleController extends Controller
      */
     public function create()
     {
-        return view('backend.roles.create');
+        $levels = $this->role->getAllowedLevels();
+        return view('backend.roles.create',compact('levels'));
     }
 
     /**
@@ -72,7 +73,8 @@ class RoleController extends Controller
     public function edit($id)
     {
         $role = $this->role->find($id);
-        return view('backend.roles.edit',compact('role'));
+        $levels = $this->role->getAllowedLevels();
+        return view('backend.roles.edit',compact('role','levels'));
     }
 
     /**

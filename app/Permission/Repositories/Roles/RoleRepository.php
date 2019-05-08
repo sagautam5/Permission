@@ -9,6 +9,7 @@
 namespace App\Permission\Repositories\Roles;
 
 use App\Permission\Repositories\Repository;
+use Illuminate\Support\Facades\Auth;
 
 /**
  * Class RoleRepository
@@ -27,13 +28,23 @@ class RoleRepository extends Repository
     }
 
     /**
-     * Get Roles except super admin
+     * Get Roles allowed for the user
      *
      * @return mixed
      */
     public function getAllRoles()
     {
-        return $this->model->where('id','!=',1)->get();
+         return $this->model->where('level', '<', Auth::user()->role->level)->get();
+    }
+
+    /**
+     * Get roles ids allowed for the user
+     *
+     * @return mixed
+     */
+    public function getAllowedRoleIds()
+    {
+        return $this->model->where('level', '<', Auth::user()->role->level)->pluck('id')->toArray();
     }
 
     /**

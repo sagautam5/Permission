@@ -17,6 +17,7 @@ class CreateTableRoles extends Migration
             $table->bigIncrements('id');
             $table->string('display_name');
             $table->string('slug');
+            $table->enum('level', ['1','2','3','4','5','6','7','8','9'])->default('1');
             $table->timestamps();
         });
     }

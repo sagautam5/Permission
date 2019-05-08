@@ -14,7 +14,7 @@ class Role extends Model
     /**
      * @var array
      */
-    protected $fillable = ['display_name','slug'];
+    protected $fillable = ['display_name','slug', 'level'];
 
     /**
      * A role has Many Permissions

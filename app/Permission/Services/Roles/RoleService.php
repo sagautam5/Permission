@@ -10,6 +10,7 @@ namespace App\Permission\Services\Roles;
 
 use App\Permission\Repositories\Roles\RoleRepository;
 use Illuminate\Database\DatabaseManager;
+use Illuminate\Support\Facades\Auth;
 use Psr\Log\LoggerInterface;
 
 /**
@@ -40,7 +41,7 @@ class RoleService
      * @param DatabaseManager $db
      * @param LoggerInterface $log
      */
-    public function __construct(RoleRepository $role,DatabaseManager $db, LoggerInterface $log)
+    public function __construct(RoleRepository $role, DatabaseManager $db, LoggerInterface $log)
     {
         $this->role = $role;
         $this->log = $log;
@@ -66,6 +67,25 @@ class RoleService
     public function getAllRoles()
     {
         return $this->role->getAllRoles();
+    }
+
+    /**
+     * Get Allowed User Role Levels
+     *
+     * @return array
+     */
+    public function getAllowedLevels()
+    {
+        $levels = array();
+        $userRoleLevel = Auth::user()->role->level;
+
+        for($i=1; $i<10; $i++)
+        {
+            if($i<$userRoleLevel)
+                $levels[] = $i;
+        }
+
+        return $levels;
     }
 
     /**
@@ -104,7 +124,8 @@ class RoleService
         try {
 
             $input = $request->only([
-                'display_name'
+                'display_name',
+                'level'
             ]);
 
             $input['slug'] = nameToSlug($request->display_name);
@@ -145,8 +166,10 @@ class RoleService
         $this->db->beginTransaction();
         try {
             $input = $request->only([
-               'display_name'
+               'display_name',
+                'level'
             ]);
+
             $input['slug'] = nameToSlug($request->display_name);
 
             $this->role->update($id,$input);

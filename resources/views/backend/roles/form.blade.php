@@ -7,6 +7,26 @@
     </div>
 </div>
 <div class="form-group">
+    <label for="role_id" class="col-form-label">Select Level</label>
+
+    <select class="form-control" name="level" required>
+
+        @foreach($levels as $level )
+            <option value="{{$level}}"
+                    @if(isset($role))
+                        @if($role->level == $level)
+                            selected
+                        @endif
+                    @else
+                        @if(old('level')==$level)
+                            selected
+                        @endif
+                    @endif
+            >{{getDigitName($level)}}</option>
+        @endforeach
+    </select>
+</div>
+<div class="form-group">
     <div>
         <button type="submit" class="btn btn-pink waves-effect waves-light confirm-submit">
             @if(isset($role)) Update @else Add @endif

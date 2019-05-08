@@ -14,6 +14,7 @@ class RolesTableSeeder extends Seeder
         $superAdmin = new \App\Permission\Models\Roles\Role();
         $superAdmin->display_name = 'Super Admin';
         $superAdmin->slug = nameToSlug('Super Admin');
+        $superAdmin->level = '9';
         $superAdmin->save();
     }
 }
