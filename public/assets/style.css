@@ -1,0 +1,21 @@
+
+.profile-box{
+    margin-left: 10px;
+    margin-right: 25px;
+}
+.profile-box img{
+    display: inline-block;
+}
+.profile-box h6{
+    margin-left: 10px;
+    display: inline-block;
+}
+
+.slimscrollleft{
+    width: 256px !important;
+}
+
+.employee-photo{
+    max-width: 300px;
+    max-height: 220px;
+}
