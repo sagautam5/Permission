@@ -7,9 +7,9 @@ $router->group(['namespace'=>'Users'],function($router){
 
     $router->post('/user/store', 'UserController@store')->middleware('hasPermission:users,store')->name('users.store');
 
-    $router->get('/user/edit/{id}', 'UserController@edit')->middleware('hasPermission:users,edit')->name('users.edit');
+    $router->get('/user/edit/{id}', 'UserController@edit')->middleware('hasPermission:users,edit')->middleware('checkUserEditDeleteAllowed')->name('users.edit');
 
     $router->patch('/user/update/{id}', 'UserController@update')->middleware('hasPermission:users,update')->name('users.update');
 
-    $router->get('/user/delete/{id}', 'UserController@delete')->middleware('hasPermission:users,delete')->middleware('checkUserBeforeDelete')->name('users.delete');
+    $router->get('/user/delete/{id}', 'UserController@delete')->middleware('hasPermission:users,delete')->middleware('checkUserEditDeleteAllowed')->name('users.delete');
 });

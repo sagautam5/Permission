@@ -9,6 +9,7 @@
 namespace App\Permission\Repositories\Users;
 
 use App\Permission\Repositories\Repository;
+use Illuminate\Support\Facades\Auth;
 
 /**
  * Class UserRepository
@@ -44,6 +45,8 @@ class UserRepository extends Repository
      */
     public function getAllUsers()
     {
-        return $this->all();
+        return $this->model->whereHas('role', function ($query){
+            $query->where('level', '<', Auth::user()->role->level);
+        })->get();
     }
 }

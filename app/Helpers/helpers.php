@@ -26,12 +26,11 @@ if (! function_exists('nameToSlug')) {
 
 if(! function_exists('hasResourcePermission'))
 {
-    function hasResourcePermission($permissions,$resource){
+    function hasResourcePermission($permissions, $resource){
 
         $exists = false;
-
         foreach ($permissions as $permission) {
-            if($permission['resource']==$resource){
+            if($permission->resource->name == $resource){
                 $exists = true;
             }
         }
@@ -41,12 +40,12 @@ if(! function_exists('hasResourcePermission'))
 
 if(! function_exists('hasActionResourcePermission'))
 {
-    function hasActionResourcePermission($permissions,$resource,$action){
+    function hasActionResourcePermission($permissions, $resource, $action){
 
         $exists = false;
         foreach ($permissions as $permission)
         {
-            if($permission['action']==$action && $permission['resource']==$resource){
+            if($permission->action == $action && $permission->resource->name == $resource){
                 $exists = true;
             }
         }

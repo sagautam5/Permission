@@ -7,7 +7,7 @@ use Closure;
 use App\User;
 use Illuminate\Support\Facades\Auth;
 
-class CheckUserBeforeDelete
+class CheckUserEditDeleteAllowed
 {
     /**
      * Handle an incoming request.
@@ -18,12 +18,18 @@ class CheckUserBeforeDelete
      */
     public function handle($request, Closure $next)
     {
-        $admin_id = User::where('role_id',1)->first()->id;
+        $roleLevel = Auth::user()->role->level;
+        $user = User::find($request->id);
 
-        if($request->id==$admin_id)
-        {
-            return response('Invalid Operation', 404);
+        if(!$user){
+            abort(404, 'User Not Found');
         }
+
+        if($user->role->level >= $roleLevel)
+        {
+            return response('Unauthorized Operation', 404);
+        }
+
         return $next($request);
     }
 }

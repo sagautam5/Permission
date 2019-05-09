@@ -85,7 +85,7 @@ class RoleController extends Controller
      * @return \Illuminate\Http\RedirectResponse
      * @throws \Exception
      */
-    public function update($id,RoleRequest $request)
+    public function update($id, RoleRequest $request)
     {
         $result = $this->role->update($id,$request);
         if($result['status']){

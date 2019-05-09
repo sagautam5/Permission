@@ -7,9 +7,9 @@ $router->group(['namespace'=>'Roles'], function($router) {
 
     $router->post('/role/store', 'RoleController@store')->middleware('hasPermission:roles,store')->name('roles.store');
 
-    $router->get('/role/edit/{id}', 'RoleController@edit')->middleware('hasPermission:roles,edit')->name('roles.edit');
+    $router->get('/role/edit/{id}', 'RoleController@edit')->middleware('hasPermission:roles,edit')->middleware('checkRoleEditDeleteAllowed')->name('roles.edit');
 
     $router->patch('/role/update/{id}', 'RoleController@update')->middleware('hasPermission:roles,update')->name('roles.update');
 
-    $router->get('/role/delete/{id}', 'RoleController@delete')->middleware('hasPermission:roles,delete')->name('roles.delete');
+    $router->get('/role/delete/{id}', 'RoleController@delete')->middleware('hasPermission:roles,delete')->middleware('checkRoleEditDeleteAllowed')->name('roles.delete');
 });

@@ -205,7 +205,7 @@ class RoleService
         $this->db->beginTransaction();
         try{
 
-            $this->user->delete($id);
+            $this->role->delete($id);
 
             $result = ['status' =>  true,'message' => 'Role deleted Successfully'];
 

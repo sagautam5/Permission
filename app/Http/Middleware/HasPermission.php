@@ -3,6 +3,7 @@
 namespace App\Http\Middleware;
 
 use App\Permission\Models\Permissions\Permission;
+use App\Permission\Models\Resources\Resource;
 use Closure;
 use Illuminate\Support\Facades\Auth;
 
@@ -17,14 +18,19 @@ class HasPermission
      * @param $action
      * @return mixed
      */
-    public function handle($request, Closure $next,$resource,$action)
+    public function handle($request, Closure $next, $resource, $action)
     {
 
         $role_id = Auth::user()->role_id;
-        $permission = Permission::where('role_id',$role_id)->where('resource',$resource)->where('action',$action)->first();
+        $resource_record = Resource::where('name', $resource)->first();
 
-        if($permission){
-            return $next($request);
+        if($resource_record){
+
+            $permission = Permission::where('role_id', $role_id)->where('resource_id', $resource_record->id)->where('action', $action)->first();
+
+            if($permission){
+                return $next($request);
+            }
         }
         echo 'You don\'t have permission to do that';
     }

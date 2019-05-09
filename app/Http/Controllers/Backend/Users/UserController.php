@@ -3,10 +3,9 @@
 namespace App\Http\Controllers\Backend\Users;
 
 use App\Http\Requests\Users\UserRequest;
-use App\Permission\Services\Roles\RoleService;
 use App\Permission\Services\Users\UserService;
-use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Http\Request;
 
 /**
  * Class UserController
@@ -28,9 +27,15 @@ class UserController extends Controller
         $this->user = $user;
     }
 
+    /**
+     * Get All Users that user can view
+     *
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
     public function index()
     {
         $users = $this->user->getAllUsers();
+
         return view('backend.users.index', compact('users'));
     }
 
@@ -135,8 +140,9 @@ class UserController extends Controller
      * @return \Illuminate\Http\RedirectResponse
      * @throws \Exception
      */
-    public function delete($id)
+    public function delete($id, Request $request)
     {
+        dd($request->all());
         /**
          * Delete User
          */

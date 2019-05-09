@@ -34,6 +34,6 @@ class PermissionRepository extends Repository
      */
     public function currentUserPermissions()
     {
-        return $this->model->where('role_id',Auth::user()->role_id)->select('action','resource')->get()->toArray();
+        return $this->model->where('role_id',Auth::user()->role_id)->get();
     }
 }

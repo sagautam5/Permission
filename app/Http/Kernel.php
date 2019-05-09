@@ -61,6 +61,8 @@ class Kernel extends HttpKernel
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
         'verified' => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,
         'hasPermission' => \App\Http\Middleware\HasPermission::class,
+        'checkUserEditDeleteAllowed' => \App\Http\Middleware\CheckUserEditDeleteAllowed::class,
+        'checkRoleEditDeleteAllowed' => \App\Http\Middleware\CheckRoleEditDeleteAllowed::class
     ];
 
     /**
